@@ -1,4 +1,4 @@
-#include "sorting_algorithms.h"
+#include "sort.h"
 
 /**
  * swap_values - Swap two values in an array.
