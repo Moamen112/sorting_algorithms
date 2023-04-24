@@ -1,32 +1,45 @@
-#include <stdio.h>
+#include "sorting_algorithms.h"
 
 /**
- * bubble_sort - sorts an array of integers
- * in ascending order using bubble sort
- * @array: the array to sort
- * @size: the size of the array
+ * swap_values - Swap two values in an array.
+ * @first_value: The first value to swap.
+ * @second_value: The second value to swap.
  */
+void swap_values(int *first_value, int *second_value)
+{
+	int temp_value;
 
+	temp_value = *first_value;
+	*first_value = *second_value;
+	*second_value = temp_value;
+}
+
+/**
+ * bubble_sort - Sort an array of integers in ascending order.
+ * @array: An array of integers to sort.
+ * @size: The size of the array.
+ * Description: Prints the array after each swap.
+ */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, j;
-	int tmp;
+	size_t index, array_len = size;
+	bool is_swapped = false;
 
-	for (i = 0; i < size - 1; i++)
+	if (array == NULL || size < 2)
+		return;
+
+	while (is_swapped == false)
 	{
-		for (j = 0; j < size - i - 1; j++)
+		is_swapped = true;
+		for (index = 0; index < array_len - 1; index++)
 		{
-			if (array[j] > array[j + 1])
+			if (array[index] > array[index + 1])
 			{
-				tmp = array[j];
-				array[j] = array[j + 1];
-				array[j + 1] = tmp;
-				printf("%d, ", array[j]);
+				swap_values(array + index, array + index + 1);
+				print_array(array, size);
+				is_swapped = false;
 			}
 		}
-		printf("%d", array[j]);
-		if (i != size - 2)
-			printf(", ");
+		array_len--;
 	}
-	printf("\n");
 }
